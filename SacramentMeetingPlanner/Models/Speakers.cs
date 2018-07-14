@@ -12,6 +12,7 @@ namespace SacramentMeetingPlanner.Models
         public String FirstName { get; set; }
         public String LastName { get; set; }
         public String Topic { get; set; }
+        public int Order { get; set; }
 
 
        public Planner Planner { get; set; }
