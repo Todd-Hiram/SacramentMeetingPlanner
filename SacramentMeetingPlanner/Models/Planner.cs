@@ -14,13 +14,20 @@ namespace SacramentMeetingPlanner.Models
         public string BishopricMemeber { get; set; }
         [Display(Name = "Opening Hymn")]
         public string OpeningHymn { get; set; }
+        [Display(Name = "Opening Prayer")]
+        public string OpeningPrayer { get; set; }
         [Display(Name = "Sacrament Hymn")]
         public string SacramentHymn { get; set; }
+
+        public IEnumerable<Speakers> Speakers { get; set; }
+
         [Display(Name = "Intermediate Hymn")]
         public string IntermediateHymn { get; set; }
         [Display(Name = "Closing Hymn")]
         public string ClosingHymn { get; set; }
+        [Display(Name = "Closing Prayer")]
+        public string ClosingPrayer { get; set; }
 
-        public IEnumerable<Speakers> Speakers { get; set; }
+       
     }
 }
