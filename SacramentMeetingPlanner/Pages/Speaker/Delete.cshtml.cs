@@ -19,7 +19,7 @@ namespace SacramentMeetingPlanner.Pages.Speaker
         }
 
         [BindProperty]
-        public Speaker Speaker { get; set; }
+        public Models.Speaker Speaker { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {

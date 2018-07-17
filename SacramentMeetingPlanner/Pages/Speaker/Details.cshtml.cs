@@ -18,7 +18,7 @@ namespace SacramentMeetingPlanner.Pages.Speaker
             _context = context;
         }
 
-        public Speaker Speaker { get; set; }
+        public Models.Speaker Speaker { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
