@@ -1,0 +1,70 @@
+@page
+@model SacramentMeetingPlanner.Pages.Planner.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Planner</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Planner.MeetingDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Planner.MeetingDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Planner.BishopricMemeber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Planner.BishopricMemeber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Planner.OpeningHymn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Planner.OpeningHymn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Planner.OpeningPrayer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Planner.OpeningPrayer)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Planner.SacramentHymn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Planner.SacramentHymn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Planner.IntermediateHymn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Planner.IntermediateHymn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Planner.ClosingHymn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Planner.ClosingHymn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Planner.ClosingPrayer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Planner.ClosingPrayer)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Planner.PlannerId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

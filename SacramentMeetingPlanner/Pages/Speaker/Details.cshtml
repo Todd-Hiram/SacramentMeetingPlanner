@@ -1,0 +1,49 @@
+@page
+@model SacramentMeetingPlanner.Pages.Speaker.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Speaker</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Speaker.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Speaker.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Speaker.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Speaker.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Speaker.Topic)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Speaker.Topic)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Speaker.Order)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Speaker.Order)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Speaker.Planner)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Speaker.Planner.BishopricMemeber)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Speaker.SpeakerId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

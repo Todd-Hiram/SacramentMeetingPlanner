@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SacramentMeetingPlanner.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace SacramentMeetingPlanner
 {
@@ -24,6 +26,14 @@ namespace SacramentMeetingPlanner
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Configuration dependency injection to inject the database model whenever we need it.
+            // Reads the DefaultConnection from user secrets instead of storing the username and password in the code repository
+
+            string connection = Configuration["DefaultConnection"];
+
+            services.AddDbContext<PlannerModel>(options =>
+                                                options.UseSqlServer(connection));
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.

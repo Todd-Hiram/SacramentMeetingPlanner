@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace SacramentMeetingPlanner.Models
 {
-    public class Speakers
+    public class Speaker
     {
-        public int SpeakerID { get; set; }
-       public int PlannerID { get; set; }
+        public int SpeakerId { get; set; }
+       
         [Required]
         public String FirstName { get; set; }
         [Required]
@@ -19,7 +19,7 @@ namespace SacramentMeetingPlanner.Models
         [Required]
         public int Order { get; set; }
 
-
-       public Planner Planner { get; set; }
+        public int PlannerId { get; set; }
+        public Planner Planner { get; set; }
     }
 }
