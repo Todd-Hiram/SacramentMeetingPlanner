@@ -38,6 +38,25 @@
                 <input asp-for="Planner.SacramentHymn" class="form-control" />
                 <span asp-validation-for="Planner.SacramentHymn" class="text-danger"></span>
             </div>
+
+            <label asp-for="Planner.Speakers" class="control-label"></label><br>
+
+            <div class="form-group">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+
+
+                    <div id="fields"></div>
+
+
+                }
+            </div>
+            <button id="btnAddField" class="btn btn-default">Add Speaker</button>
+            <br />
+            <br />
+
             <div class="form-group">
                 <label asp-for="Planner.IntermediateHymn" class="control-label"></label>
                 <input asp-for="Planner.IntermediateHymn" class="form-control" />
@@ -66,4 +85,26 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
 }
+
+<!-- JS includes -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var $fields = $('#fields');
+        $('#btnAddField').click(function (e) {
+            e.preventDefault();
+            $('<label for="order">Order</label><input type="text" asp-for="Speaker.Order" class= "form-control speakerField" name = "order" /> \
+                <label for="first">First Name</label><input type="text" asp-for="Speaker.FirstName" class= "form-control" name = "first" /> \
+                <label for="last">Last Name</label><input type="text" asp-for="Speaker.LastName" class= "form-control" name = "last" /> \
+                <label for="topic">Topic</label><input type="text" asp-for="Speaker.Topic" class= "form-control" name = "topic" /> ').appendTo($fields);
+        });
+    });
+
+</script>
+
+
