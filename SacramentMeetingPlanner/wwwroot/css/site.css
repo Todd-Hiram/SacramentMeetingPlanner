@@ -34,6 +34,46 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Crimson Text', serif !important;
 }
 
+.navbar-inverse {
+    // background-color: #BCAB79;
+    //border-color: #BCAB79;
+    background-color: #BDC4A7;
+    border-color: #BDC4A7;
+}
+.navbar-inverse .navbar-brand {
+        color: #fff;
+
+    }
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+}
+.jumbotron h1 {
+    width: 60%;
+    color: #fff;
+    text-shadow: 2px 2px 2px rgba(150, 150, 150, 0.72);
+}
+
+.jumbotron {
+    background-image: url(../images/chapel2.jpg) !important;
+    background-position: 0% 30%;
+    background-repeat: no-repeat;
+    padding-top: 80px;
+    padding-bottom: 180px;
+}
+
+tr:nth-child(odd) {
+    //background: #c8d9d3;
+    background: #dee8e4;
+}
+
+tr.table_head {
+    background: #fff;
+}
+th {
+    border-top: 1px solid #000;
+    border-top: 1px solid #000;
+}
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */
