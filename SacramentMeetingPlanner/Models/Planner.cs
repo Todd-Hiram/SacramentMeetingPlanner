@@ -10,7 +10,8 @@ namespace SacramentMeetingPlanner.Models
 
         [Required]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Meeting Date")]
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yy}", ApplyFormatInEditMode = true)]
         public DateTime MeetingDate { get; set; }
 
         [Required]
@@ -41,7 +42,6 @@ namespace SacramentMeetingPlanner.Models
         [Required]
         [Display(Name = "Closing Prayer")]
         public string ClosingPrayer { get; set; }
-
        
     }
 }

@@ -29,7 +29,7 @@ namespace SacramentMeetingPlanner.Pages.Planner
                 return NotFound();
             }
 
-            Planner = await _context.Planners.FirstOrDefaultAsync(m => m.PlannerId == id);
+            Planner = await _context.Planners.Include("Speakers").FirstOrDefaultAsync(m => m.PlannerId == id);
 
             if (Planner == null)
             {
@@ -45,7 +45,41 @@ namespace SacramentMeetingPlanner.Pages.Planner
                 return Page();
             }
 
-            _context.Attach(Planner).State = EntityState.Modified;
+            // Look up the existing Planner if it exists
+            var existingPlanner = _context.Planners.Include("Speakers").FirstOrDefault(x => x.PlannerId == Planner.PlannerId);
+
+            if(existingPlanner != null)
+            {
+                // Update the database version with the received form posted version
+                _context.Entry(existingPlanner).CurrentValues.SetValues(Planner);
+
+                // Now check the Speakers received and make sure we update the database versions of them
+                if (Planner != null && Planner.Speakers != null)
+                {
+                    foreach (var speaker in existingPlanner.Speakers.ToList())
+                    {
+                        var incomingSpeaker = Planner.Speakers.SingleOrDefault(i => i.SpeakerId == speaker.SpeakerId);
+                        if (incomingSpeaker != null)
+                        {
+                            _context.Entry(speaker).CurrentValues.SetValues(incomingSpeaker);
+                        }
+                        else
+                        {
+                            // Remove any speakers that have been removed from the posted form version
+                            _context.Speaker.Remove(speaker);
+                        }
+                    }  
+
+                    // Add new speakers
+                    foreach(var speaker in Planner.Speakers)
+                    {
+                        if(speaker.SpeakerId == 0)
+                        {
+                            existingPlanner.Speakers.Add(speaker);
+                        }
+                    }
+                }
+            }
 
             try
             {

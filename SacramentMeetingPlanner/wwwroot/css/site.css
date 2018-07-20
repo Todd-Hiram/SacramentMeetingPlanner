@@ -81,3 +81,11 @@ th {
         display: none;
     }
 }
+
+.form-horizontal .form-group {
+    margin-left: 0px;
+}
+
+button#btnAddField {
+    margin-top: 25px;
+}

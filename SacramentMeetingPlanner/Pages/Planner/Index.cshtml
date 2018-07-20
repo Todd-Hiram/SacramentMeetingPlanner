@@ -5,10 +5,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Sacrement Meetings</h2>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create" class="btn btn-primary">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -69,6 +69,19 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ClosingPrayer)
+            </td>
+            <td>
+                @if (item.Speakers != null)
+                {
+                @foreach (var speaker in item.Speakers)
+                {
+                    <p>@Html.DisplayFor(modelItem => speaker.LastName)</p>
+                }
+                }
+                else
+                {
+                    <span>No Speakers</span>
+                }
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.PlannerId">Edit</a> |

@@ -27,7 +27,7 @@ namespace SacramentMeetingPlanner.Pages.Planner
                 return NotFound();
             }
 
-            Planner = await _context.Planners.FirstOrDefaultAsync(m => m.PlannerId == id);
+            Planner = await _context.Planners.Include("Speakers").FirstOrDefaultAsync(m => m.PlannerId == id);
 
             if (Planner == null)
             {

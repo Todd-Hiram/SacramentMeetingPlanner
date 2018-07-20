@@ -22,7 +22,7 @@ namespace SacramentMeetingPlanner.Pages.Planner
 
         public async Task OnGetAsync()
         {
-            Planner = await _context.Planners.ToListAsync();
+            Planner = await _context.Planners.Include("Speakers").ToListAsync();
         }
     }
 }

@@ -5,10 +5,9 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
+<h2>Meeting Details</h2>
 
 <div>
-    <h4>Planner</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -41,6 +40,21 @@
         <dd>
             @Html.DisplayFor(model => model.Planner.SacramentHymn)
         </dd>
+        @if (Model.Planner.Speakers != null)
+        {
+            @foreach(var item in Model.Planner.Speakers)
+            {
+               <dt>
+            @Html.DisplayNameFor(model => model.Planner.Speakers)
+        </dt>
+               <dd>
+                   @Html.DisplayFor(modelItem => item.FirstName)
+                   @Html.DisplayFor(modelItem => item.LastName)
+                   (@Html.DisplayFor(modelItem => item.Topic))
+               </dd>
+
+            }
+        }
         <dt>
             @Html.DisplayNameFor(model => model.Planner.IntermediateHymn)
         </dt>
@@ -62,6 +76,6 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Planner.PlannerId">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Planner.PlannerId" class="btn btn-warning">Edit</a> |
+    <a asp-page="./Index" class="btn btn-primary">Back to List</a>
 </div>
