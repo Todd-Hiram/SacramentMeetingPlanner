@@ -45,39 +45,31 @@ namespace SacramentMeetingPlanner.Pages.Planner
                 return Page();
             }
 
+            List<Models.Speaker> incomingSpeakerList = new List<Models.Speaker>(Planner.Speakers);
+            List<int> incomingSpeakerIdList = incomingSpeakerList.Select(s => s.SpeakerId).ToList();
+
             // Look up the existing Planner if it exists
-            var existingPlanner = _context.Planners.Include("Speakers").FirstOrDefault(x => x.PlannerId == Planner.PlannerId);
-
-            if(existingPlanner != null)
+            _context.Planners.Attach(Planner);
+            _context.Entry(Planner).State = EntityState.Modified;
+            foreach (var sp in incomingSpeakerList)
             {
-                // Update the database version with the received form posted version
-                _context.Entry(existingPlanner).CurrentValues.SetValues(Planner);
-
-                // Now check the Speakers received and make sure we update the database versions of them
-                if (Planner != null && Planner.Speakers != null)
+                if (sp.SpeakerId == 0)
                 {
-                    foreach (var speaker in existingPlanner.Speakers.ToList())
-                    {
-                        var incomingSpeaker = Planner.Speakers.SingleOrDefault(i => i.SpeakerId == speaker.SpeakerId);
-                        if (incomingSpeaker != null)
-                        {
-                            _context.Entry(speaker).CurrentValues.SetValues(incomingSpeaker);
-                        }
-                        else
-                        {
-                            // Remove any speakers that have been removed from the posted form version
-                            _context.Speaker.Remove(speaker);
-                        }
-                    }  
+                    _context.Speaker.Add(sp);
+                }
+                else
+                {
+                    _context.Entry(sp).State = EntityState.Modified;
+                }
+            }
 
-                    // Add new speakers
-                    foreach(var speaker in Planner.Speakers)
-                    {
-                        if(speaker.SpeakerId == 0)
-                        {
-                            existingPlanner.Speakers.Add(speaker);
-                        }
-                    }
+            var existingSpeakers = _context.Speaker.Where(x => x.PlannerId == Planner.PlannerId).ToList();
+
+            foreach (var existingSpeaker in existingSpeakers)
+            {
+                if (!incomingSpeakerIdList.Contains(existingSpeaker.SpeakerId))
+                {
+                    _context.Speaker.Remove(existingSpeaker);
                 }
             }
 
